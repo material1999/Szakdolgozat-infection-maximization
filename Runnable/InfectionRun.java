@@ -16,6 +16,8 @@ import static Runnable.Parameters.ksize;
 
 public class InfectionRun {
 
+	static long startTime, elapsedTime, elapsedSeconds, seconds, minutes;
+
 	public static void main(String[] args) throws IOException {
 
 		String networkFilePath;
@@ -80,6 +82,7 @@ public class InfectionRun {
 
 				// run the Greedy method on the whole graph
 				/*
+				startTime = System.currentTimeMillis();
 				fw.write("ksize: " + Parameters.ksize + ", greedy iterations: " + Parameters.CompleteSimSamplesize +
 						", simulation iterations: " + Parameters.CompleteSimFinalSamplesize + "\n\n");
 				ArrayList<Node> infectorset_whole = new ArrayList<Node>(net.getNodes());
@@ -87,12 +90,17 @@ public class InfectionRun {
 					Parameters.directed, Parameters.GreedySimulation, fw);
 				double finalinfection_greedy = CompleteSim.Simulation(net, bestnodes_whole, Parameters.CompleteSimFinalSamplesize, Parameters.directed);
 				fw.write("\nFinal greedy infection: " + finalinfection_greedy);
+				elapsedTime = System.currentTimeMillis() - startTime;
+				elapsedSeconds = elapsedTime / 1000;
+				seconds = elapsedSeconds % 60;
+				minutes = elapsedSeconds / 60;
+				System.out.println("elapsed time: " + minutes + " min " + seconds + " sec\n");
 				*/
-
 
 
 				// run the Greedy method on the most infectious nodes based on communitiy detection algorithms
 
+				startTime = System.currentTimeMillis();
 				fw.write("ksize: " + ksize + ", best: " + best + ", greedy iterations: " + Parameters.CompleteSimSamplesize +
 						", simulation iterations: " + Parameters.CompleteSimFinalSamplesize + "\n\n");
 				ArrayList<Node> infectorset_community = Read.readBestNodes(net, communityFilePath, best);
@@ -100,6 +108,12 @@ public class InfectionRun {
 						Parameters.directed, Parameters.GreedySimulation, fw);
 				double finalinfection_community = CompleteSim.Simulation(net, bestnodes_community, Parameters.CompleteSimFinalSamplesize, Parameters.directed);
 				fw.write("\nFinal greedy infection: " + finalinfection_community);
+				elapsedTime = System.currentTimeMillis() - startTime;
+				elapsedSeconds = elapsedTime / 1000;
+				seconds = elapsedSeconds % 60;
+				minutes = elapsedSeconds / 60;
+				System.out.println("elapsed time: " + minutes + " min " + seconds + " sec\n");
+
 
 
 				fw.close();
