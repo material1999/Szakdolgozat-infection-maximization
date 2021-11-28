@@ -10,14 +10,14 @@ import com.opencsv.CSVReader;
 import Graph.*;
 
 public class Read {
-	@SuppressWarnings("deprecation")
-	public static Network ReadCsv(String filepath) throws FileNotFoundException {
-		Network network=new Network();
-		CSVReader reader = null;
+
+	public static Network ReadCsv(String filepath) {
+		Network network = new Network();
+		CSVReader reader;
         try {
             reader = new CSVReader(new FileReader(filepath),';');
             String[] line;
-            line=reader.readNext();          
+            reader.readNext();
             while ((line = reader.readNext()) != null) {
             	if(!(line[0].equals(line[1]))) {
                 network.addEdge(new Edge(new Node(line[0]),new Node(line[1]),Double.parseDouble(line[2])));
@@ -32,9 +32,9 @@ public class Read {
 
 	public static ArrayList<Node> readBestNodes (Network net, String filepath, int best) throws FileNotFoundException {
 	    ArrayList<Node> nodeArrayList = new ArrayList<>();
-        CSVReader reader = null;
+        CSVReader reader;
         String[] line;
-        Node nextNode = null;
+        Node nextNode;
         try {
             reader = new CSVReader(new FileReader(filepath),':');
             for (int i = 0; i < best; i++) {
@@ -43,7 +43,6 @@ public class Read {
                 nodeArrayList.add(nextNode);
             }
         } catch (IOException e) {
-            // file not found
             e.printStackTrace();
         }
 	    return nodeArrayList;

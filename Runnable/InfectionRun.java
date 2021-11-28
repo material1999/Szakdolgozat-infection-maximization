@@ -49,8 +49,8 @@ public class InfectionRun {
 		on.add(777);
 		for (int i : on) {
 		*/
-		for (int i = 1; i <= 1; i++) {
-		//for (int i = 1; i <= Parameters.fileCount; i++) {
+		//for (int i = 1; i <= 1; i++) {
+		for (int i = 1; i <= Parameters.fileCount; i++) {
 
 			networkFilePath = Parameters.networksFolder + i + "/edgeweighted_edit.csv";
 

@@ -15,25 +15,25 @@ public class Network {
 	}
 	
 	public void addEdge(Edge a) {
-		Node in=null;
-		Node out=null;
-	
-		
+		Node in = null;
+		Node out = null;
+
 		if(nodes.contains(a.getOut())) {	
-			out=(Node)nodemap.get(a.getOut().getId());
+			out = (Node)nodemap.get(a.getOut().getId());
 		}else {
 			nodes.add(a.getOut());
-			out=a.getOut();
+			out = a.getOut();
 		}
 		
 		if(nodes.contains(a.getIn())) {
-			in=(Node)nodemap.get(a.getIn().getId());
+			in = (Node)nodemap.get(a.getIn().getId());
 		}else {
 			nodes.add(a.getIn());
-			in=a.getIn();
+			in = a.getIn();
 		}
 		a.setIn(in);
 		a.setOut(out);
+
 		//UNDIRECTED
 		out.addNeighbour(in);
 		in.addNeighbour(out);
@@ -91,7 +91,6 @@ public class Network {
 		}
 		return sum;
 	}
-
 
 	public Node getNode(String n) {
 		nodemap = this.getNodemap();
